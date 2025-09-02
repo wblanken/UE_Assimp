@@ -34,5 +34,10 @@
 			"Name": "GeometryScripting",
 			"Enabled": true
 		}
-    ]
+    ],
+	"PreBuildSteps": {
+		"Win64": [
+			"call \"$(PluginDir)\\check_and_build.bat\""
+		]
+	}
 }
