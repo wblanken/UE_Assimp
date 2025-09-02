@@ -36,7 +36,7 @@ DefaultPath				The path where the file dialog will open initially
 FileTypes					The type filters to show in the dialog. This string should be a "|" delimited list of (Description|Extensionlist) pairs. Extensionlists are ";" delimited.
  OutFilenames				The filenames that were selected in the dialog
  Success  true if files were successfully selected	*/
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION(BlueprintCallable, Category="Assimp|File")
 	static void OpenFileDialogue(FString DialogTitle, FString DefaultPath, FString DefaultFile,
 	                             const FString& FileTypes, uint8 Flags, TArray<FString>& OutFilenames, bool MultiSelect,
 	                             bool& Success);
@@ -47,19 +47,19 @@ FileTypes					The type filters to show in the dialog. This string should be a "|
 	                             uint32 Flags, TArray<FString>& OutFilenames, int32& OutFilterIndex);
 
 	//Flags: You can use post process nodes and use | (bitwise Or node) between them to create any combination of flags. Also We recommend using preset flags. Flip UV flag is needed for correct urneal engine meshes
-	UFUNCTION(BlueprintCallable, meta=( WorldContext="WorldContextObject"))
+	UFUNCTION(BlueprintCallable, meta=( WorldContext="WorldContextObject"), Category="Assimp|Import")
 	static void ImportScenes(TArray<FString> InFilenames, UObject* WorldContextObject, TArray<UAIScene*>& Scenes, int Flags, bool DisableAutoSpaceChange);
 
-	UFUNCTION(BlueprintCallable, meta=( WorldContext="WorldContextObject"))
+	UFUNCTION(BlueprintCallable, meta=( WorldContext="WorldContextObject"), Category="Assimp|Import")
 	static UAIScene* ImportScene(FString FileName, UObject* WorldContextObject, int Flags, bool DisableAutoSpaceChange);
 	//Experimental
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION(BlueprintCallable , Category="Assimp|Import")
 	void ImportScenesAsync(TArray<FString> InFilenames,UObject* ParentObject, int Flags, bool DisableAutoSpaceChange,FOnProgressUpdated OnProgressUpdated,FOnImportSceneComplete OnImportSceneComplete);
 
 	static FTransform aiMatToTransform(aiMatrix4x4 NodeTransform);
 
 	//Apply normal map settings to imported textures
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION(BlueprintCallable , Category="Assimp")
 	static void ApplyNormalMapSettingsToTexture(UTexture2D* In)
 	{
 		In->CompressionSettings = TC_Normalmap;
@@ -854,6 +854,6 @@ FileTypes					The type filters to show in the dialog. This string should be a "|
 		return aiProcessPreset_TargetRealtime_MaxQuality;
 	}
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION(BlueprintCallable, Category="Assimp")
 		static void SetActorNameDebug(AActor* InActor, FString ActorName);
 };

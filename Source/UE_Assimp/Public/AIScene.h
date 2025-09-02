@@ -63,9 +63,9 @@ public:
 	//! Returns an embedded texture. if null then check path or texture is not embedded and must be imported using unreal default import texture function
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category="Assimp|Scene")
 	UTexture2D* GetEmbeddedTexture(FString FilePath, bool bIsNormalMap);
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadOnly, Category="Assimp|Scene" )
 	FString FullFilePath;
-	UFUNCTION(BlueprintCallable,BlueprintPure)
+	UFUNCTION(BlueprintCallable,BlueprintPure, Category="Assimp|Scene" )
 	float GetSceneScale();
 
 
@@ -76,15 +76,15 @@ public:
 private:
 	//For Object Creation
 	UPROPERTY(Transient)
-	TArray<UAIMesh*> OwnedMeshes;
+	TArray<TObjectPtr<UAIMesh>> OwnedMeshes;
 	UPROPERTY(Transient)
-	UAINode* OwnedRootNode;
+	TObjectPtr<UAINode> OwnedRootNode;
 	UPROPERTY(Transient)
-	TArray<UAICamera*> OwnedCameras;
+	TArray<TObjectPtr<UAICamera>> OwnedCameras;
 	UPROPERTY(Transient)
-	TArray<UAILight*> OwnedLights;
+	TArray<TObjectPtr<UAILight>> OwnedLights;
 	UPROPERTY(Transient)
-	TArray<UAIMaterial*> OwnedMaterials;
+	TArray<TObjectPtr<UAIMaterial>> OwnedMaterials;
 	aiScene* scene;
 	virtual void BeginDestroy() override;
 	float SceneScale;

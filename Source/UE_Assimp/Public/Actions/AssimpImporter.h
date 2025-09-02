@@ -44,7 +44,7 @@ protected:
 	bool DisableAutoSpaceChange;
 
 	UPROPERTY()
-	UObject* WorldPtr;
+	TObjectPtr<UObject> WorldPtr;
 
 public:
 	/**

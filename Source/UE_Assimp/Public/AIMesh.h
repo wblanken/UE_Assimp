@@ -30,16 +30,16 @@ friend UAIScene;
   * This is also the size of all of the per-vertex data arrays.
   * The maximum value for this member is #AI_MAX_VERTICES.
   */
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION(BlueprintCallable, Category="Assimp|AIMesh")
 	void GetMeshVertices(TArray<FVector>& Vertices );
 	/** Vertex normals.
 	* The array contains normalized vectors, nullptr if not present.*/
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION(BlueprintCallable, Category="Assimp|AIMesh")
 	void GetMeshNormals(TArray<FVector>& Normals );
 	//Get All data needed to create a mesh section in Unreal engine
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION(BlueprintCallable, Category="Assimp|AIMesh")
 	void GetMeshDataForProceduralMesh(TArray<FVector>&Vertices,TArray<int32>& Triangles,TArray<FVector>& Normals, TArray<FVector2D>& UV0, TArray<FProcMeshTangent>& Tangents);
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION(BlueprintCallable, Category="Assimp|AIMesh")
 	UStaticMesh* GetStaticMesh();
 	/**
 	 * Get Dynamic Mesh from this mesh
@@ -49,13 +49,13 @@ friend UAIScene;
 	UDynamicMesh* GetDynamicMesh();
 	
 	//Num of vertices array
-	UFUNCTION(BlueprintCallable,BlueprintPure)
+	UFUNCTION(BlueprintCallable,BlueprintPure, Category="Assimp|AIMesh")
 	int GetNumVertices();
 	/** The bones of this mesh.
   * A bone consists of a name by which it can be found in the
   * frame hierarchy and a set of vertex weights.
   */
-	UFUNCTION(BlueprintCallable,BlueprintPure)
+	UFUNCTION(BlueprintCallable,BlueprintPure, Category="Assimp|AIMesh")
 	void  GetAllBones(TArray<FAIBone>& Bones);
 
 	/** Name of the mesh. Meshes can be named, but this is not a
@@ -69,23 +69,23 @@ friend UAIScene;
    *      partitioning.
    *   - Vertex animations refer to meshes by their names.
    **/
-	UFUNCTION(BlueprintCallable,BlueprintPure)
+	UFUNCTION(BlueprintCallable,BlueprintPure, Category="Assimp|AIMesh")
 	FString GetMeshName() const;
 
 	/*Get material for this mesh . use get materials in scene object with this index to get its material.
 	 *Materials are property of scene because many meshes can share a single material .
 	 **/
 	
-	UFUNCTION(BlueprintCallable,BlueprintPure)
+	UFUNCTION(BlueprintCallable,BlueprintPure, Category="Assimp|AIMesh")
 	int GetMaterialIndex();
 
 	
 	UPROPERTY()
-	UStaticMeshDescription* MeshDescription;
+	TObjectPtr<UStaticMeshDescription> MeshDescription;
 	UPROPERTY()
-	UStaticMesh* StaticMesh = nullptr;
+	TObjectPtr<UStaticMesh> StaticMesh = nullptr;	
 	aiMesh* Mesh;
 
 	UPROPERTY()
-	UDynamicMesh* DynamicMesh = nullptr;
+	TObjectPtr<UDynamicMesh> DynamicMesh = nullptr;
 };

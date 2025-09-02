@@ -41,9 +41,9 @@ public:
 	
  FAIVertexWeight(aiVertexWeight InVertexWeight);
 
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadOnly, Category="Assimp|Bone")
 	int VertexID;
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadOnly, Category="Assimp|Bone")
 	float Weight;
 
 private:

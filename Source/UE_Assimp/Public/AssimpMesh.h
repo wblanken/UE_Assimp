@@ -17,10 +17,11 @@ class UE_ASSIMP_API UAssimpMesh : public UProceduralMeshComponent
 {
 	GENERATED_BODY()
 
-	public:
-	UFUNCTION(BlueprintCallable)
+public:
+	UFUNCTION(BlueprintCallable, Category="Assimp|AIMesh")
 	void SetupMesh(UAIMesh* InMeshData);
-	private:
+	
+private:
 	UPROPERTY()
-	UAIMesh* MeshData;
+	TObjectPtr<UAIMesh> MeshData;
 };
